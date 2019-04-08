@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+	"github.com/pkg/errors"
 )
 
 var (
@@ -103,6 +104,10 @@ func (c *Client) SendRecaptcha(websiteURL string, recaptchaKey string) (string, 
 			log.Println("Result is ready.")
 			break
 		}
+	}
+	
+	if response == nil {
+		return "", errors.Errorf("Failed to get a response")
 	}
 	return response["solution"].(map[string]interface{})["gRecaptchaResponse"].(string), nil
 }
