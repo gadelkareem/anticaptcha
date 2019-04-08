@@ -3,11 +3,11 @@ package anticaptcha
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/pkg/errors"
 	"log"
 	"net/http"
 	"net/url"
 	"time"
-	"github.com/pkg/errors"
 )
 
 var (
@@ -105,7 +105,7 @@ func (c *Client) SendRecaptcha(websiteURL string, recaptchaKey string) (string, 
 			break
 		}
 	}
-	
+
 	if response == nil {
 		return "", errors.Errorf("Failed to get a response")
 	}
