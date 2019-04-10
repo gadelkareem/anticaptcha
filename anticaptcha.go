@@ -106,7 +106,7 @@ func (c *Client) SendRecaptcha(websiteURL string, recaptchaKey string) (string, 
 		}
 	}
 
-	if response == nil {
+	if response["solution"] == nil {
 		return "", errors.Errorf("Failed to get a response")
 	}
 	return response["solution"].(map[string]interface{})["gRecaptchaResponse"].(string), nil
