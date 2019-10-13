@@ -142,6 +142,9 @@ func (c *Client) createTaskImage(imgString string) (float64, error) {
 	// Decode response
 	responseBody := make(map[string]interface{})
 	json.NewDecoder(resp.Body).Decode(&responseBody)
+        if response["taskId"] == nil {
+		return "", errors.Errorf("Failed to get a response")
+	}
 	// TODO treat api errors and handle them properly
 	return responseBody["taskId"].(float64), nil
 }
