@@ -3,7 +3,7 @@ package anticaptcha
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
+	"github.com/pkg/errors"
 	"log"
 	"net/http"
 	"net/url"
